@@ -13,7 +13,7 @@ public class Act1App {
 		int opcio=0;
 		
 		do {
-			String res = JOptionPane.showInputDialog("Que quieres hacer?\n1-Introducir el nombre de un alumno\n2-Mostrar alumnos y notas\n3-Salir");
+			String res = JOptionPane.showInputDialog("Que quieres hacer?\n1-Introducir alumnos y sus notas\n2-Mostrar alumnos y notas\n3-Salir");
 			opcio = Integer.parseInt(res);
 			
 			switch(opcio) {
@@ -26,6 +26,7 @@ public class Act1App {
 			case 3:
 				break;
 			}
+			
 		}while(opcio!=3);
 	}
 	
