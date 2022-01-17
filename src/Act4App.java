@@ -28,7 +28,7 @@ public class Act4App {
 		
 		do {
 			
-			respuesta = JOptionPane.showInputDialog("Que quieres hacer?\n1 - Introducir elemento\n2 - Listar uno o varios elementos\n3 - Calcular el precio\n4 - Pagar\n5 - Salir");
+			respuesta = JOptionPane.showInputDialog("Que quieres hacer?\n1 - Introducir elemento\n2 - Listar uno o todos los elementos\n3 - Calcular el precio\n4 - Pagar\n5 - Salir");
 			opcion = Integer.parseInt(respuesta);
 			
 			switch(opcion) {
@@ -37,7 +37,7 @@ public class Act4App {
 				introElem(stock);
 			break;
 			case 2:
-				String unoVar = JOptionPane.showInputDialog("Uno o varios?");
+				String unoVar = JOptionPane.showInputDialog("Quieres mostrar uno o todos los productos?");
 				
 				if(unoVar.equals("uno")) {
 					String art = JOptionPane.showInputDialog("Cual quieres mostrar?");
@@ -48,7 +48,7 @@ public class Act4App {
 					listarTodos(stock);
 					
 				}
-				
+			break;
 			case 3:
 				String que = JOptionPane.showInputDialog("Que lleva?");
 				String cant = JOptionPane.showInputDialog("Y quantos lleva?");
@@ -60,9 +60,9 @@ public class Act4App {
 				
 				String IVA = JOptionPane.showInputDialog("De cuanto es el IVA?\n1- 21%\n2- 4%");
 				
-				precioIVA = calcularIVA(precio, IVA);
+				precioIVA = calcularIVA(precioSIVA, IVA);
 								
-				totalConIVA += precio;
+				totalConIVA += precioIVA;
 				
 				System.out.println("Producto - Precio");
 				System.out.println(que + " " + precioIVA);
@@ -74,10 +74,13 @@ public class Act4App {
 				int pagado = Integer.parseInt(aPagar);
 				cambio = cambioPag(pagado, totalConIVA);
 				
+				JOptionPane.showMessageDialog(null, "El cambio es de: " + cambio + "€");
+			
 			break;
 			
-			case 5:
-				break;
+			case 5: //salir del do while
+			break;
+			
 			}
 		
 		}while(opcion!=5);
@@ -89,8 +92,8 @@ public class Act4App {
 		String articulo, valor;
 		double cantidad;
 		
-		articulo = JOptionPane.showInputDialog("Como se llama el objeto que quere introducir? (introduce 0 para salir)");
-		valor = JOptionPane.showInputDialog("Y que cantidad hay de este articulo?");
+		articulo = JOptionPane.showInputDialog("Como se llama el producto que quere introducir?");
+		valor = JOptionPane.showInputDialog("Y cuanto cuesta ese producto?");
 		cantidad = Double.valueOf(valor);
 		
 		stock.put(articulo, cantidad);
