@@ -50,7 +50,7 @@ public class Act2App {
 		String cantPag = JOptionPane.showInputDialog("Usted tiene que pagar " + precioIVA + "€ cuanto va a pagar?");
 		double pagado = Double.valueOf(cantPag);
 		
-		cambio = cambioPag(pagado, precioIVA);
+		cambio = cambioPag(pagado, precioTotalIVA);
 		
 		System.out.println("El cambio es de " + cambio + "€");
 	}
@@ -84,12 +84,12 @@ public class Act2App {
 	}
 	
 	//Calculamos el cambio que daremos a la hora de pagar
-	public static double cambioPag(double pagado, double precioIVA) {
-		double cambio=0;
+	public static double cambioPag(double pagado, double precioTotalIVA) {
+		double vuelta=0;
 		
-		cambio = pagado - precioIVA;
+		vuelta = pagado - precioTotalIVA;
 		
-		return cambio;
+		return vuelta;
 	}
 	
 }

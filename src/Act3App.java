@@ -11,7 +11,7 @@ public class Act3App {
 		int opcion;
 		
 		
-		Hashtable<String, Double> stock = new Hashtable<String,Double>(); //este es el diccionaria del pondremos el id del producto y el precio
+		Hashtable<String, Double> stock = new Hashtable<String,Double>(); //diccionario del inventario
 		
 		stock.put("zapatos", 20.00);
 		stock.put("chanclas", 15.00);
@@ -48,7 +48,7 @@ public class Act3App {
 				}
 				
 			case 3:
-				break;
+			break;
 			
 			}
 		
@@ -56,6 +56,7 @@ public class Act3App {
 		
 	}
 	
+	//Aqui el usuario podra introducir elementos al diccionario
 	public static void introElem(Hashtable<String,Double> stock) {
 		String articulo, valor;
 		double cantidad;
@@ -67,6 +68,7 @@ public class Act3App {
 		stock.put(articulo, cantidad);
 	}
 	
+	//Aqui le mostrara el objeto deseado
 	public static void listarUno(String art ,Hashtable<String,Double> almacen) {
 		
 		System.out.println("Objeto - Cantidad");
@@ -78,6 +80,7 @@ public class Act3App {
 		}
 	}
 
+	//Aqui muestra todos los objetos
 	public static void listarTodos(Hashtable<String,Double> almacen) {
 		
 		System.out.println("Objeto - Cantidad");
