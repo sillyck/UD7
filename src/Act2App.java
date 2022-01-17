@@ -6,7 +6,8 @@ import java.util.Hashtable;
 import javax.swing.JOptionPane;
 public class Act2App {
 
-	static double precio=0, precioIVA=0, IVA=0;
+	static double precioSIVA=0, precioIVA=0, precioTotalSIVA=0, precioTotalIVA=0, cambio=0;
+	static String IVA;
 	
 	public static void main(String[] args) {
 		
@@ -21,7 +22,7 @@ public class Act2App {
 		caja.put("260104", 7.25);
 		caja.put("260105", 17.99);
 		
-		String quantS = JOptionPane.showInputDialog("Quantos productos lleva en el carro de la compra?");
+		String quantS = JOptionPane.showInputDialog("Quantos productos diferentes lleva en el carro de la compra?");
 		int cantTotal = Integer.parseInt(quantS);
 		
 		do {
@@ -30,18 +31,29 @@ public class Act2App {
 			String cant = JOptionPane.showInputDialog("Y quantos lleva?");
 			int quant = Integer.parseInt(cant);
 			
-			calcularPrecio(caja, cod, quant);
+			precioSIVA = calcularPrecio(caja, cod, quant);
 			
-			String IVAString = JOptionPane.showInputDialog("Que IVA tiene el el producto introducido?\n1 - 21%\n2 - 4%");
-			IVA = Double.valueOf(IVAString);
+			precioTotalSIVA += precioSIVA;
 			
-			calcularIVA(precio, IVA);
+			String IVA = JOptionPane.showInputDialog("Que IVA tiene el el producto introducido?\n1 - 21%\n2 - 4%");
 			
-			System.out.println(precioIVA);
+			precioIVA = calcularIVA(precioSIVA, IVA);
+			
+			precioTotalIVA += precioIVA;
 			
 			cont++;
 		}while(cont!=cantTotal);
 		
+		System.out.println("Usted ha comprado un total de " + cont + " articulo/s");
+		System.out.println("El precio total sin IVA es de " + precioSIVA);
+		System.out.println("El precio total con IVA es de " + precioIVA);
+		
+		String cantPag = JOptionPane.showInputDialog("Usted tiene que pagar " + precioIVA + "€ cuanto va a pagar?");
+		double pagado = Double.valueOf(cantPag);
+		
+		cambio = cambioPag(pagado, precioIVA);
+		
+		System.out.println("El cambio es de " + cambio + "€");
 	}
 
 	public static double calcularPrecio(Hashtable<String,Double> ref, String cod, int quant) { //Calculamos el precio sin IVA
@@ -54,19 +66,28 @@ public class Act2App {
 			}		
 		}
 		precio = precio * quant;
-		return precio;
 		
+		return precio;
 	}
 	
-	public static double calcularIVA(double precio, double IVA) {
+	public static double calcularIVA(double precio, String IVA) {
+		double resultado = 0;
 		
-		if(IVA == 21.00) {
-			precioIVA = precio + (precio * 21.00);
+		if(IVA == "1") {
+			resultado = precio + (precio * 0.21);
 		}else {
-			precioIVA = precio + (precio * 4.00);
+			resultado = precio + (precio * 0.04);
 		}
 		
-		return precioIVA;
+		return resultado;
+	}
+	
+	public static double cambioPag(double pagado, double precioIVA) {
+		double cambio=0;
+		
+		cambio = pagado - precioIVA;
+		
+		return cambio;
 	}
 	
 }
