@@ -1,7 +1,6 @@
 /**
  * @author Jordi Ribellas
  */
-
 import java.util.Hashtable;
 import javax.swing.JOptionPane;
 public class Act2App {
@@ -56,6 +55,7 @@ public class Act2App {
 		System.out.println("El cambio es de " + cambio + "€");
 	}
 
+	//Calculamos el precio sin IVA
 	public static double calcularPrecio(Hashtable<String,Double> ref, String cod, int quant) { //Calculamos el precio sin IVA
 		double precio=0;
 		
@@ -70,6 +70,7 @@ public class Act2App {
 		return precio;
 	}
 	
+	//Calculamos el IVA
 	public static double calcularIVA(double precio, String IVA) {
 		double resultado = 0;
 		
@@ -82,6 +83,7 @@ public class Act2App {
 		return resultado;
 	}
 	
+	//Calculamos el cambio que daremos a la hora de pagar
 	public static double cambioPag(double pagado, double precioIVA) {
 		double cambio=0;
 		
